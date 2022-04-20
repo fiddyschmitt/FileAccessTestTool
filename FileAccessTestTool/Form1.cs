@@ -3,7 +3,7 @@ namespace FileAccessTestTool
     public partial class Form1 : Form
     {
         static string PROGRAM_NAME = "File Access Test Tool";
-        static string PROGRAM_VERSION = "1.0.0";
+        static string PROGRAM_VERSION = "1.0.1";
 
         public Form1()
         {
