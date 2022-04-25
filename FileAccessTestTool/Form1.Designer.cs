@@ -151,8 +151,7 @@
             this.txtReadFilenames.ScrollBars = System.Windows.Forms.ScrollBars.Both;
             this.txtReadFilenames.Size = new System.Drawing.Size(644, 89);
             this.txtReadFilenames.TabIndex = 5;
-            this.txtReadFilenames.Text = "R:\\Fiddy FSX Scenery - backup 2013-08-14\\zoom 17 - South East Queensland\\Scenery\\" +
-    "108.bgl";
+            this.txtReadFilenames.Text = "\\\\192.168.1.15\\data\\Users\\fiddy\\Downloads\\ubuntu-20.04.3-desktop-amd64.iso";
             // 
             // label3
             // 
