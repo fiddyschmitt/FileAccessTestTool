@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -19,8 +20,12 @@ namespace FileAccessTestTool
                 try
                 {
                     var streams = readFilenames
-                                    .Select(filename => File.OpenRead(filename))
+                                    //.Select(filename => File.OpenRead(filename))  //If this is used, the OS will cache the file in RAM (resulting in the file not being read).
+                                    .Select(filename => new FileStream(filename, FileMode.Open, FileAccess.Read, FileShare.ReadWrite, 4096, FileFlagNoBuffering))  //This prevents caching. Only works for network files and not local files!
                                     .ToList();
+
+                    //Todo: Make it work for local files by satisfying the alignment and file access requirements listed here:
+                    //https://docs.microsoft.com/en-au/windows/win32/fileio/file-buffering?redirectedfrom=MSDN
 
                     while (!readTaskCancellationToken.IsCancellationRequested)
                     {
@@ -50,5 +55,7 @@ namespace FileAccessTestTool
         public Task Task { get; }
         public ulong TotalBytesRead { get; protected set; }
         public string? ErrorEncountered { get; protected set; }
+
+        const FileOptions FileFlagNoBuffering = (FileOptions)0x20000000;
     }
 }
